@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/maxjvh/tahti-samples/issues"
   },
-  "homepage": "https://github.com/maxjvh/tahti-samples#readme"
+  "homepage": "https://github.com/maxjvh/tahti-samples#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1058.0"
+  }
 }
