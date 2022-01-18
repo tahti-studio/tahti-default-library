@@ -1,0 +1,19 @@
+{
+  "name": "tahti-samples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxjvh/tahti-samples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxjvh/tahti-samples/issues"
+  },
+  "homepage": "https://github.com/maxjvh/tahti-samples#readme"
+}
