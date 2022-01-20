@@ -26,9 +26,9 @@ for (const pack of fs.readdirSync('packs')) {
         for (const sample of samples) {
             const destinationPath = `./samples/${pack}/${sample}`;
             fs.cpSync(`./packs/${pack}/samples/${sample}`, destinationPath);
-            const sampleData = fs.readFileSync(destinationPath);
-            const compressed = zlib.gzipSync(sampleData, { level: 9 });
-            fs.writeFileSync(destinationPath, compressed);
+            //const sampleData = fs.readFileSync(destinationPath);
+            //const compressed = zlib.gzipSync(sampleData, { level: 9 });
+            //fs.writeFileSync(destinationPath, compressed);
             meta.samples.push({ name: sample, path: `/${pack}/${sample}` });
         }
     }
