@@ -18,11 +18,14 @@ function mergeBuffers(buffers) {
   
 function convertToFlac(source, destination) {
     const wav = new WaveFile(fs.readFileSync(source));
-    const samples = wav.getSamples(false, Float32Array);
+    let samples = wav.getSamples(false, Float32Array);
+
+    if (wav.fmt.numChannels === 1)
+      samples = [samples];
 
     const numSamples = samples[0].length;
     const encoder = Flac.create_libflac_encoder(wav.fmt.sampleRate, wav.fmt.numChannels, 16, 8, numSamples, false);
-  
+
     const sampleBuffers = [];
     for (let ch = 0; ch < wav.fmt.numChannels; ch++) {
       const channelData = samples[ch];
