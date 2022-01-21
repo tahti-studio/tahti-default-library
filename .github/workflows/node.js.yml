@@ -25,7 +25,7 @@ jobs:
     - run: npm run build --if-present
     - name: Upload to S3
       run: |
-        aws s3 sync ./samples s3://tahti-samples/ --acl public-read
+        aws s3 sync ./samples s3://tahti-samples/ --acl public-read --cache-control max-age=604800
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
