@@ -2,3 +2,10 @@ name: ODLX Pack
 author: ODLX
 author_website: 'https://odlx.bandcamp.com/'
 description: ''
+patterns:
+  - name: odlx pattern 1
+    id: edjkenrj
+  - name: odlx pattern 2
+    id: bxjbowly
+  - name: odlx pattern 3
+    id: aojagwkj
