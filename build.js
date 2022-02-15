@@ -18,6 +18,9 @@ function mergeBuffers(buffers) {
   
 function convertToFlac(source, destination) {
     const wav = new WaveFile(fs.readFileSync(source));
+    if (wav.fmt.bitsPerSample === 16)
+      wav.toBitDepth(32);
+
     let samples = wav.getSamples(false, Float32Array);
 
     if (wav.fmt.numChannels === 1)
@@ -61,6 +64,8 @@ Flac.onready = e => {
     for (const pack of fs.readdirSync('packs')) {
         const yamlPath = glob(`./packs/${pack}/*.yaml`, { sync: true })[0];
         const meta = yaml.load(fs.readFileSync(yamlPath));
+        if (meta.draft)
+          continue;
         fs.mkdirSync(`./samples/${pack}`);
         const imagePath = glob(`./packs/${pack}/*.jpg`, { sync: true })[0];
         if (imagePath) {
