@@ -18,8 +18,6 @@
   "homepage": "https://github.com/maxjvh/tahti-samples#readme",
   "dependencies": {
     "glob": "^7.2.0",
-    "js-yaml": "^4.1.0",
-    "libflacjs": "^5.4.0",
-    "wavefile": "^11.0.0"
+    "js-yaml": "^4.1.0"
   }
 }
