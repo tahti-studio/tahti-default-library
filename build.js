@@ -1,8 +1,9 @@
-const yaml = require('js-yaml');
-const fs = require('fs');
-const glob = require('glob');
+import yaml from 'js-yaml';
+import fs from 'node:fs';
+import glob from 'glob';
+import AdmZip from 'adm-zip';
 
-const { execSync } = require('child_process');
+import { execSync } from 'node:child_process';
   
 function convertToFlac(source, destination) {
   execSync(`ffmpeg -i "${source}" -c:a flac "${destination}"`);
@@ -33,17 +34,20 @@ for (const pack of fs.readdirSync('packs')) {
 
     meta.samples = [];
 
+    const zip = new AdmZip();
     if (fs.existsSync(`./packs/${pack}/samples`)) {
         const samples = fs.readdirSync(`./packs/${pack}/samples`);
         for (const sample of samples) {
-            const destinationPath = `./samples/${pack}/${sample}`;
+            const destinationPath = `./samples/${pack}/${sample.replace('.wav', '.flac')}`;
             if (sample === '.DS_Store')
               continue;
-            convertToFlac(`./packs/${pack}/samples/${sample}`, destinationPath.replace('.wav', '.flac'));
+            convertToFlac(`./packs/${pack}/samples/${sample}`, destinationPath);
             meta.samples.push({ name: sample, path: `${pack}/${sample.replace('.wav', '.flac')}` });
+            zip.addLocalFile(destinationPath);
         }
     }
-
+    zip.writeZip(`./samples/${pack}/samples.zip`);
+    meta.zip_path = `${pack}/samples.zip`;
     packs.push(meta);
 }
 
